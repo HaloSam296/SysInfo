@@ -1,0 +1,24 @@
+To-Do:
+
+ - Learn git and create GitHub repo
+
+ - Change avgTemp to use lm-sensors
+
+ - Finish How-To
+
+ - Thoroughly test and refine current project to prepare for project 3
+
+ - Modify an existing bash script or create a new one that can be edited
+	within the C program to output different results. 
+
+	- This modification must be able to be specifically set by the 
+		user
+
+	- The users must be able to verify within the C program that 
+		the changes have successfully been made
+
+For the Bash Script modification:
+	Use two copies of the script. First is an original copy and the 
+	second is the modified copy. This lets the original be the base
+	that can be compared against by any subsequent copies, to test for
+	modifications. 
