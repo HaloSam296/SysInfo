@@ -1,5 +1,15 @@
 #!/bin/bash
 
+
+#I got a weird error I haven't encountered before. STackOverflow and research helped
+#me understand the error a little, but not enough to fix it.
+#Thus, ChatGPT:
+
+# Set LC_NUMERIC to force decimal separator to period
+export LC_NUMERIC=C
+
+
+
 checkConnection() {
 
     ping -c 1 google.com >/dev/null 2>&1
@@ -55,13 +65,23 @@ getCPUTemp() {
         getPackages #Download and install lm-sensors
     fi
 
-    #ChatGPT provided the formatting to make this command look pretty
-    sensors -u | grep '^Core\s[[:digit:]]\+:' | awk '{print $4}' | sed 's/+//g' | awk '{sum+=$1} END {print sum/NR}'
+	# Get the CPU temperatures
+	temperatures=$(sensors | awk '/Core/{gsub("[^0-9.]", "", $3); print $3}' | sed 's/+//')
 
-    #The } bracket is below
+	# Calculate the average temperature
+	total=0
+	count=0
+	for temp in $temperatures; do
+	    total=$(echo "$total + $temp" | bc)
+	    count=$((count + 1))
+	done
 
-    #Old code. Still here for reference, just in case. This all, plus the notes for the bracket, will be deleted
-    #once the script is finished.
+	average=$(echo "scale=2; $total / $count" | bc)
+
+	echo $average
+
+	#Told old code to get CPU Temp
+	#will be deleted once the script is finished.
 
     #	if [ -f "/sys/class/thermal/thermal_zone0/temp" ]; then
     #        # Read the temperature in millidegrees Celsius
