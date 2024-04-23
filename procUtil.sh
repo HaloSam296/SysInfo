@@ -63,7 +63,7 @@ getProcerUtil() {
 	getPackages
 	
 	# Read total CPU usage from /proc/stat
-    cpu_stat=(`grep '^cpu ' /proc/stat`)
+    cpu_stat=($(grep '^cpu ' /proc/stat))
 
     # Get total CPU time spent in user mode, system mode, and idle time
     user=${cpu_stat[1]}
@@ -89,7 +89,7 @@ getProcerUtil() {
     # Calculate total CPU utilization percentage
     total_utilization=$(echo "scale=2; ($non_idle_cpu_time / $total_cpu_time) * 100" | bc -l)
     
-    echo $total_utilization
+    echo "$total_utilization"
 }
 
 getProcerUtil

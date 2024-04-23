@@ -1,7 +1,9 @@
 Name: SysInfo
 Author: Samuel Brucker
-Version: 2
-Date: 4/17/24 
+Version: 2.1
+Date: 4/23/24 
+
+GitHub: https://github.com/HaloSam296/SysInfo
 
 
 Description:
@@ -13,7 +15,7 @@ SysInfo is a small command line C utility to retrieve system information. Curren
 	-Ram Information
 	-CPU Core Count
 	-CPU Temperature
-	-CPU Approximate Utilization
+	-CPU Utilization
 These options are chosen through a menu.
 
 
@@ -21,6 +23,9 @@ Requirements:
 	-GCC or another C compiler
 	-Debian
 		~~ This might work on other distributions or operating systems, but do not expect full functionality. This program is not intended to be ran on anything but Debian
+	-bc and lm-sensors
+		~~ These packages are used by Options 7 and 8: CPU Temperature and CPU Utilization.
+		~~ If they are not already installed on the machine, the program will install them if there is 1GB of free space, and an Internet connection
 
 Usage:
 1. Using the command line, go to the directory (folder) where the program is stored.

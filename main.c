@@ -1,10 +1,12 @@
 /*
-Version: 2
+Version: 2.1
 Author: Samuel Brucker
 
 Sources:
-ChatGPT was used to "fill in the gaps"
-	This was to make quick queries to double check formatting, as well as to figure out how time works
+
+Phind was used perform efficient research and for debugging, but it was NOT used for creating code. i.e., it helped me research a particular function or it helped me tweak a line to fix an ellusive error.
+
+ChatGPT was used extensively for generating code. As can be discerned by many of the comments, it has touched a ton of the code for this project. While it smoothed over many gaps, the design and a ton fo the code is my own. 
 
 Hostname: https://stackoverflow.com/questions/5190553/linux-c-get-server-hostname
 gethostname() man page: https://man7.org/linux/man-pages/man2/sethostname.2.html
@@ -14,6 +16,8 @@ System Release: https://www.geeksforgeeks.org/getting-system-and-process-informa
 Get the System RAM: https://stackoverflow.com/questions/349889/how-do-you-determine-the-amount-of-linux-system-ram-in-c
 
 Morgan Sander's program was reviewed and copied from for better input validation
+
+The notes for the C Essentials were also reviewed, particularly for File and I/O functionality.
 */
 
 #include <stdio.h>
@@ -64,8 +68,8 @@ int main() {
 	//This input validation is heavily inspired by Morgan's program
 	bool loop = true;
 
-	printf("Hello! You need the bc package to use option 8, the CPU Utilization.\n");
-	printf("If you do not have it installed, it will be installed for you.\n");
+	printf("Hello! Third-party packages are needed to use Options 7 and 8. These packages are bc and lm-sensors.\n");
+	printf("If you do not have these installed, they will be installed upon running the options for the first time.\n");
 	printf("Please ensure that you have at least 1GB of storage and an Internet connection.\n\n\n");
 
 	while (loop == true) {
@@ -86,7 +90,7 @@ int main() {
 
 		//New CPU Functions:
 		printf("    7. Average CPU Temperature\n");
-		printf("    8. Approximate CPU Total Utilization\n");
+		printf("    8. CPU Total Utilization\n");
 
 
 		printf("\n9. Exit\n");
