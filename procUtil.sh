@@ -14,6 +14,7 @@ getProcerUtil() {
     #it comes native on Ubuntu desktop, so there shouldn't be any issues
     if ! command -v bc &>/dev/null; then
         echo "bc not found, please run the installation option."
+        exit 1 #stop the script
     fi
 
 

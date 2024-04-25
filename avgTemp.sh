@@ -15,6 +15,7 @@ getCPUTemp() {
     #check if lm-sensors is installed
     if ! command -v sensors &>/dev/null; then
         echo "lm-sensors not found, please run the installation option."
+        exit 1 #stop the script
     fi
 
 	# Get the CPU temperatures

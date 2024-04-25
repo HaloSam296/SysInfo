@@ -36,13 +36,13 @@ checkConnection() {
 
 #The main function
 getPackages() {
-    
+
     checkStorageSpace
     checkConnection
 
-    # This if statement checks to make sure there is a network connection and
-    # enough storage space. Then it checks if the needed packages, lm-sensors and bc, are installed. 
-    # If they aren't, it tries to install them.
+    #This if statement checks to make sure there is a network connection and
+    #enough storage space. Then it checks if the needed packages, lm-sensors and bc, are installed. 
+    #If they aren't, it tries to install them.
 
     if [ "$storageResponse" = 1 ] && [ "$pingResponse" = 1 ]; then
         # lm-sensors
@@ -79,6 +79,6 @@ getPackages() {
     fi
 }
 
-
+sleep 6
 #Run the function
 getPackages

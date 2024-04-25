@@ -93,9 +93,9 @@ int main() {
 
 
 		//SysInfo Options
-		printf("\nSysInfo Options\n");
-		printf("	9. Check for Packages\n");
-		printf("	10. Exit\n");
+		printf("\nSysInfo Options:\n");
+		printf("    9. Check for Packages\n");
+		printf("    10. Exit\n");
 		printf("------------------------------------");
 		printf("\nEnter your choice: ");
 
@@ -390,12 +390,13 @@ char* getSysInfo(int info) {
 			printf("The program will now check for lm-sensors and bc.\nIf it needs to install any packages, you will likely be prompted for your sudo password. Please enter it.\n");
 			printf("After entering your password, please wait until the program has finished running. Depending on your Internet connection, this could take a couple minutes, but it should only be several seconds.\n");
 			printf("Finally, please ensure that you do have a working Internet connection and at least 1GB of free space.");
+
 			//run the script
 			system("bash checkPackages.sh");
-
+			break;
 
 		default:
-			printf("Invalid value. Please choose a number between 1 and 7.\n");
+			printf("ERROR: Something went wrong in the program.\n");
 			break;
 	}
 }
