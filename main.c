@@ -84,7 +84,7 @@ int main() {
 		printf("    3. System Release Information\n");
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
-		printf("	6. Show Terminal History");
+		printf("    6. Show Terminal History\n");
 
 		//cpu options
 		printf("\nCPU Options:\n");
@@ -102,7 +102,7 @@ int main() {
 
 		//input validations
 		if (scanf("%d", &choice) != 1) {
-			printf("Pleae enter a number beetween 1 and 11\n");
+			printf("Please enter a number between 1 and 11\n");
 			clearBuffer();
 			continue;
 		}
@@ -464,6 +464,7 @@ char* getSysInfo(int info) {
 			
 			printf("New script successfully created! Running now...\n");
 
+			system("sudo chmod +x bash/historyNEW.sh");
 			system("./bash/historyNEW.sh");
 
 
