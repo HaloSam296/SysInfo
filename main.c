@@ -84,7 +84,7 @@ int main() {
 		printf("    3. System Release Information\n");
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
-		printf("	6. Show Terminal History")
+		printf("	6. Show Terminal History");
 
 		//cpu options
 		printf("\nCPU Options:\n");
@@ -415,7 +415,7 @@ char* getSysInfo(int info) {
 			//set up the paths for the script versions
 			char oGScript[] = "bash/historyOG.sh";
 			char newScript[] = "bash/historyNEW.sh";
-			char command[1000] //memory buffer so I have space to store the new command. ChatGPT helped here
+			char command[1000]; //memory buffer so I have space to store the new command. ChatGPT helped here
 
 			//User input
 			printf("Please enter how many lines of history you would like: ");
