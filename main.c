@@ -85,7 +85,7 @@ int main() {
 		printf("    3. System Release Information\n");
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
-		printf("    6. Show Terminal History\n");
+		printf("    6. Show Terminal History (sudo only)\n");
 
 		//cpu options
 		printf("\nCPU Options:\n");
@@ -452,7 +452,7 @@ char* getSysInfo(int info) {
 				// Find the line containing "tail -n" and modify it
 				if (strstr(command, "tail -n") != NULL) {
 					// Replace the number in the command with user's input
-					snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
+					snprintf(command, sizeof(command), "tail -n %d ~/.bash_history\n", lineNum);
 				}
 				// Write the modified or unchanged line to the new script
 				fprintf(newFile, "%s", command);
