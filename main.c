@@ -433,7 +433,7 @@ char* getSysInfo(int info) {
 			}
 
 			//open new script to write to
-			FILE *newFile = fopen(newFilePath, "w");
+			FILE *newFile = fopen(newScript, "w");
 			if (newFile == NULL) {
 				//ChatGPT did this error handling
 				if (errno == EACCES) {
