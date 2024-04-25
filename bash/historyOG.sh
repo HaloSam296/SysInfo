@@ -7,10 +7,5 @@
 
 #Here's the super complicated and heavy bit of bash code:
 
-#This sleep is here because I have a text line in the C program that says the new script was successfully created
-#I want to give them a few seconds to read it
-sleep 3
+tail -n 5 ~/.bash_history
 
-history | tail -n 5
-
-#I know, terrifyingly complicated

@@ -438,12 +438,11 @@ char* getSysInfo(int info) {
 			if (newFile == NULL) {
 				//ChatGPT did this error handling
 				if (errno == EACCES) {
-					printf("Permission denied to create new file. Please run this C program as sudo\n");
+					printf("Permission denied to create new file. Please run this C program as sudo.\n");
 				} else {
 					perror("Error creating new script");
 				}
 				fclose(oGFile);
-				return 1;
 			}
 
 
