@@ -30,7 +30,7 @@ getProcerUtil() {
         # Calculate the CPU usage since we last checked.
         DIFF_IDLE=$((IDLE-PREV_IDLE))
         DIFF_TOTAL=$((TOTAL-PREV_TOTAL))
-        DIFF_USAGE=$(((1000*(DIFF_TOTAL-DIFF_IDLE)/DIFF_TOTAL+5)/10)
+        DIFF_USAGE=$((1000*(DIFF_TOTAL-DIFF_IDLE)/DIFF_TOTAL+5)/10)
         echo -en "CPU: $DIFF_USAGE% \n"
 
         # Add the current CPU usage to the sum
