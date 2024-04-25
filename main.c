@@ -95,7 +95,7 @@ int main() {
 		//cpu options
 		printf("\nCPU Options:\n");
 		printf("    7. CPU Core Count\n");
-		printf("    8. Average CPU Temperature\n");
+		printf("    8. Average CPU Temperature (Not for VMs)\n");
 		printf("    9. CPU Utilization\n");
 
 
