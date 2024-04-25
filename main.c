@@ -152,6 +152,8 @@ int main() {
 
 			case 6:
 				//Show terminal history based on user input
+				getSysInfo(10);
+				break;
 				
 				
 			case 7:
@@ -397,8 +399,10 @@ char* getSysInfo(int info) {
 			printf("Finally, please ensure that you do have a working Internet connection and at least 1GB of free space.");
 
 			//pause so the user can read the words, if they wish
+			char useless;
+		
 			printf("\n\nPlease hit Enter to continue:\n");
-			getchar(); 
+			scanf("%c", &useless);
 
 			//run the script
 			system("bash bash/checkPackages.sh");
