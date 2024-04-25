@@ -12,13 +12,12 @@ DONE - Change avgTemp to use lm-sensors
 		Make a single script to check and install any needed packages
 		Then keep avgTemp in its own scripts, no package checks necessary
 
- - Modify an existing bash script or create a new one that can be edited
+ - Modify an existing bash script or create a new one that can be edited - DONE
 	within the C program to output different results. 
 
-	- This modification must be able to be specifically set by the 
-		user
+	- This modification must be able to be specifically set by the user - DONE
 
-	- The users must be able to verify within the C program that 
+	- The users must be able to verify within the C program that - WIP
 		the changes have successfully been made
 
 For the Bash Script modification:

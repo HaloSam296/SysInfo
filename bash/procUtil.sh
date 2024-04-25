@@ -39,12 +39,11 @@ getProcerUtil() {
     # Calculate total CPU utilization percentage
     total_utilization=$(echo "scale=2; ($non_idle_cpu_time / $total_cpu_time) * 100" | bc -l)
     
-    echo "$total_utilization"
+    echo $total_utilization
 }
 
 
 #run the function
-
 procUtil=$(getProcerUtil)
 
 echo $procUtil
