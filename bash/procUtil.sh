@@ -7,37 +7,38 @@
 #From github
 #Source: https://github.com/pcolby/scripts/blob/master/cpu.sh
 getProcerUtil() {
-    # by Paul Colby (http://colby.id.au), no rights reserved ;)
 
-    PREV_TOTAL=0
-    PREV_IDLE=0
-    x=0
-    while [ "$x" -le 5 ]; do
-        # Get the total CPU statistics, discarding the 'cpu ' prefix.
-        CPU=($(sed -n 's/^cpu\s//p' /proc/stat))
-        IDLE=${CPU[4]} # Assuming idle CPU time is at index 4.
+# by Paul Colby (http://colby.id.au), no rights reserved ;)
 
-        # Calculate the total CPU time.
-        TOTAL=0
-        for VALUE in "${CPU[@]:0:8}"; do
-            TOTAL=$((TOTAL+VALUE))
-        done
+PREV_TOTAL=0
+PREV_IDLE=0
+x=0
+while [ "$x" -le 10 ]; do
+    # Get the total CPU statistics, discarding the 'cpu ' prefix.
+    CPU=($(sed -n 's/^cpu\s//p' /proc/stat))
+    IDLE=${CPU[3]} # Just the idle CPU time.
 
-        # Calculate the CPU usage since we last checked.
-        DIFF_IDLE=$((IDLE-PREV_IDLE))
-        DIFF_TOTAL=$((TOTAL-PREV_TOTAL))
-        DIFF_USAGE=$(((1000*(DIFF_TOTAL-DIFF_IDLE)/DIFF_TOTAL+5)/10)
-        echo -n "CPU: $DIFF_USAGE% "
+    # Calculate the total CPU time.
+    TOTAL=0
+    for VALUE in "${CPU[@]:0:8}"; do
+        TOTAL=$((TOTAL+VALUE))
+    done
 
-        # Remember the total and idle CPU times for the next check.
-        PREV_TOTAL="$TOTAL"
-        PREV_IDLE="$IDLE"
+    # Calculate the CPU usage since we last checked.
+    DIFF_IDLE=$((IDLE-PREV_IDLE))
+    DIFF_TOTAL=$((TOTAL-PREV_TOTAL))
+    DIFF_USAGE=$(((1000*(DIFF_TOTAL-DIFF_IDLE)/DIFF_TOTAL+5)/10))
+    echo -n "CPU: $DIFF_USAGE% "
 
-        # Wait before checking again.
-        sleep 1
+    # Remember the total and idle CPU times for the next check.
+    PREV_TOTAL="$TOTAL"
+    PREV_IDLE="$IDLE"
 
-        ((x++))
+    # Wait before checking again.
+    sleep 1
 
+    ((x++))
+    
     done
 }
 
