@@ -465,7 +465,7 @@ char* getSysInfo(int info) {
 			printf("New script successfully created! Running now...\n");
 
 			system("sudo chmod +x bash/historyNEW.sh");
-			system("./bash/historyNEW.sh");
+			system("bash bash/historyNEW.sh");
 
 
 
