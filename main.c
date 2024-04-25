@@ -1,5 +1,5 @@
 /*
-Version: 2.1
+Version: 2.2
 Author: Samuel Brucker
 
 Sources:
@@ -44,7 +44,7 @@ char* getSysInfo();
 
 
 float getCPUUtilization() {
-    FILE *fp = popen("./procUtil.sh", "r");
+    FILE *fp = popen("./bash/procUtil.sh", "r");
     if (fp == NULL) {
         perror("Error executing bash script");
         return -1; // Return -1 to indicate failure
@@ -84,24 +84,25 @@ int main() {
 		printf("    3. System Release Information\n");
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
+		printf("	6. Show Terminal History")
 
 		//cpu options
 		printf("\nCPU Options:\n");
-		printf("    6. CPU Core Count\n");
-		printf("    7. Average CPU Temperature\n");
-		printf("    8. CPU Total Utilization\n");
+		printf("    7. CPU Core Count\n");
+		printf("    8. Average CPU Temperature\n");
+		printf("    9. CPU Total Utilization\n");
 
 
 		//SysInfo Options
 		printf("\nSysInfo Options:\n");
-		printf("    9. Check for Packages\n");
-		printf("    10. Exit\n");
+		printf("    10. Check for Packages\n");
+		printf("    11. Exit\n");
 		printf("------------------------------------");
 		printf("\nEnter your choice: ");
 
 		//input validations
 		if (scanf("%d", &choice) != 1) {
-			printf("Pleae enter a number beetween 1 and 10\n");
+			printf("Pleae enter a number beetween 1 and 11\n");
 			clearBuffer();
 			continue;
 		}
@@ -148,8 +149,12 @@ int main() {
 				free(RAMInfo);
 				printf("\n\n");
 				break;
-				
+
 			case 6:
+				//Show terminal history based on user input
+				
+				
+			case 7:
 				//CPU Core Count
 				char *CPUInfo = getSysInfo(6);
 				printf("CPU Core Count: %s", CPUInfo);
@@ -157,7 +162,7 @@ int main() {
 				printf("\n\n");
 				break;
 
-			case 7:
+			case 8:
 				//CPU Temp
 				char *CPUTemp = getSysInfo(7);
 				printf("CPU Average Temperature: %s", CPUTemp);
@@ -165,30 +170,30 @@ int main() {
 				printf("\n\n");
 				break;
 
-			case 8:
+			case 9:
 				//CPU Utilization
 				char *procUtil = getSysInfo(8);
 				free(procUtil);
 				printf("\n\n");
 				break;
 
-			case 9:
+			case 10:
 				//Check for packages
 				getSysInfo(9);
 				break;
 
 
-			case 10:
+			case 11:
 				//Exit case
 				printf("Exiting, goodbye!\n");
 				exit(0);
 
 			default:
-				printf("Invalid value. Please choose a number between 1 and 10.\n");
+				printf("Invalid value. Please choose a number between 1 and 11.\n");
 				break;
 		}
 	} //while (choice != 10); //this can break by having non-numerical characters entered
-							//it will be fixedheyj
+							//it will be fixed
 
 
 	return 0;
@@ -289,7 +294,7 @@ char* getSysInfo(int info) {
 				//ChatGPT was very much here
 				FILE *fp; //set fp as a file
 				char path[1035];
-			    fp = popen("./coreCount.sh","r"); //opens the bash script with read perms
+			    fp = popen("./bash/coreCount.sh","r"); //opens the bash script with read perms
 
 			    //if the read fails, print this error
 			    if (fp == NULL) {
@@ -316,7 +321,7 @@ char* getSysInfo(int info) {
 		case 7:
 			//avg CPU Temp
 		    FILE *fp2;
-		    fp2 = popen("./avgTemp.sh", "r");
+		    fp2 = popen("./bash/avgTemp.sh", "r");
 		    if (fp2 == NULL) {
 		        printf("Failed to run bash script \n");
 		        return NULL;
@@ -391,9 +396,65 @@ char* getSysInfo(int info) {
 			printf("After entering your password, please wait until the program has finished running. Depending on your Internet connection, this could take a couple minutes, but it should only be several seconds.\n");
 			printf("Finally, please ensure that you do have a working Internet connection and at least 1GB of free space.");
 
+			//pause so the user can read the words, if they wish
+			printf("\n\nPlease hit Enter to continue:\n");
+			getchar(); 
+
 			//run the script
-			system("bash checkPackages.sh");
+			system("bash bash/checkPackages.sh");
 			break;
+
+
+
+		case 10:
+			//show terminal history based on user input
+			
+			//Prepare an int to store the number of lines desired by the user
+			int lineNum;
+
+			//set up the paths for the script versions
+			char oGScript[] = "bash/historyOG.sh";
+			char newScript[] = "bash/historyNEW.sh";
+			char command[1000] //memory buffer so I have space to store the new command. ChatGPT helped here
+
+			//User input
+			printf("Please enter how many lines of history you would like: ");
+			scanf("%d", &lineNum);
+
+			//open OG script to read and copy from
+			FILE *oGFile = fopen(oGScript, "r");
+			//error handling if file is missing
+			if (oGFile == NULL) {
+				perror("ERROR: Could not open original history script!");
+			}
+
+			//open new script to write to
+			FILE *newFile = fopen(newScript, "w");
+			//error handling if this somehow fails
+			if (newFile == NULL) {
+				perror("ERROR: Could not create new script. Pray.");
+			}
+
+			//ChatGPT helped with this copying bit
+			while (fgets(command, sizeof(command), oGFile) != NULL) {
+				// Find the line containing "tail -n" and modify it
+				if (strstr(command, "tail -n") != NULL) {
+					// Replace the number in the command with user's input
+					snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
+				}
+				// Write the modified or unchanged line to the new script
+				fprintf(newScript, "%s", command);
+			}
+
+			//now to clean up after ourselves
+			fclose(oGFile);
+			fclose(newFile);
+			
+			printf("New script successfully created! Running now...");
+
+			system("bash bash/historyNEW.sh");
+
+
 
 		default:
 			printf("ERROR: Something went wrong in the program.\n");

@@ -31,7 +31,7 @@ getCPUTemp() {
 
 	average=$(echo "scale=2; $total / $count" | bc)
 
-	return $average
+	echo $average
 
 }
 

@@ -79,6 +79,5 @@ getPackages() {
     fi
 }
 
-sleep 6
 #Run the function
 getPackages

@@ -1,12 +1,6 @@
 #!/bin/bash
 
 #This is a mix of my own work and ChatGPT's
-#But mostly ChatGPT's. It did a better job than I
-
-#UPDATE: My code was buggy. ChatGPT replaced it due to time constraints :(
-#I dislike how much I'm relying on ChatGPT for this project. A good portion is my work,
-#but that portion is diminishing. I'm not learning as much as in my early programs.
-#To be fair, I also just hate programming lol. Scripting it cool though, bash4life
 
 getProcerUtil() {
 	
@@ -45,7 +39,7 @@ getProcerUtil() {
     # Calculate total CPU utilization percentage
     total_utilization=$(echo "scale=2; ($non_idle_cpu_time / $total_cpu_time) * 100" | bc -l)
     
-    return "$total_utilization"
+    echo "$total_utilization"
 }
 
 
