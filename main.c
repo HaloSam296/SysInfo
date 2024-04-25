@@ -29,6 +29,7 @@ The notes for the C Essentials were also reviewed, particularly for File and I/O
 #include <time.h> //for the time
 #include <limits.h> //for hostname
 #include <stdbool.h> //for boolean vars. It's weird I need to import this
+#include <errno.h> //for a little bit of error handling
 
 
 
