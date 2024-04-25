@@ -443,7 +443,7 @@ char* getSysInfo(int info) {
 					snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
 				}
 				// Write the modified or unchanged line to the new script
-				fprintf(newScript, "%s", command);
+				fprintf(newFile, "%s", command);
 			}
 
 			//now to clean up after ourselves
