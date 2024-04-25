@@ -463,7 +463,7 @@ char* getSysInfo(int info) {
 
 			system("chmod +x bash/historyNEW.sh");
 			system("bash bash/historyNEW.sh");
-			breaks;
+			break;
 
 
 		default:
