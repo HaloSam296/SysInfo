@@ -433,30 +433,29 @@ char* getSysInfo(int info) {
 			}
 
 			//open new script to write to
-			FILE *newFile = fopen(newScript, "w");
-			//error handling if this somehow fails
+			FILE *newFile = fopen(newFilePath, "w");
 			if (newFile == NULL) {
-				perror("ERROR: Could not create new script.");
+				//ChatGPT did this error handling
+				if (errno == EACCES) {
+					printf("Permission denied to create new file. Please run this C program as sudo\n");
+				} else {
+					perror("Error creating new script");
+				}
+				fclose(oGFile);
+				return 1;
 			}
+
 
 			//ChatGPT helped with this copying bit
 
-			try {
-				while (fgets(command, sizeof(command), oGFile) != NULL) {
-					// Find the line containing "tail -n" and modify it
-					if (strstr(command, "tail -n") != NULL) {
-						// Replace the number in the command with user's input
-						snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
-					}
-					// Write the modified or unchanged line to the new script
-					fprintf(newFile, "%s", command);
+			while (fgets(command, sizeof(command), oGFile) != NULL) {
+				// Find the line containing "tail -n" and modify it
+				if (strstr(command, "tail -n") != NULL) {
+					// Replace the number in the command with user's input
+					snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
 				}
-				
-			} catch() {
-				printf("An error occured while modifying the script. Please run this C program as sudo.")
-				fclose(oGFile);
-				close(newFile);
-				break;
+				// Write the modified or unchanged line to the new script
+				fprintf(newFile, "%s", command);
 			}
 
 			//now to clean up after ourselves
