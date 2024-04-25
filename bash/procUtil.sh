@@ -12,8 +12,8 @@ getProcerUtil() {
 
 PREV_TOTAL=0
 PREV_IDLE=0
-
-while true; do
+x=0
+while [ "$x" -le 10 ]; do
   # Get the total CPU statistics, discarding the 'cpu ' prefix.
   CPU=($(sed -n 's/^cpu\s//p' /proc/stat))
   IDLE=${CPU[3]} # Just the idle CPU time.
@@ -36,6 +36,9 @@ while true; do
 
   # Wait before checking again.
   sleep 1
+
+  ((x++))
+  
 done
 }
 
