@@ -44,5 +44,7 @@ getProcerUtil() {
 
 
 #run the function
-getProcerUtil
 
+procUtil=$(getProcerUtil)
+
+echo $procUtil

@@ -96,7 +96,7 @@ int main() {
 		printf("\nCPU Options:\n");
 		printf("    7. CPU Core Count\n");
 		printf("    8. Average CPU Temperature\n");
-		printf("    9. CPU Total Utilization\n");
+		printf("    9. CPU Utilization\n");
 
 
 		//SysInfo Options
@@ -180,6 +180,7 @@ int main() {
 
 			case 9:
 				//CPU Utilization
+				printf("There is currently and error in this script that prevents getting the utilization. The fix is WIP.\n");
 				char *procUtil = getSysInfo(8);
 				free(procUtil);
 				printf("\n\n");
