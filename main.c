@@ -69,6 +69,11 @@ int main() {
 	//This input validation is heavily inspired by Morgan's program
 	bool loop = true;
 
+	//Just making sure all the bash scripts are executable. Since there are several and they are in their own folder, I could see someone missing them
+	system("chmod +x bash/*");
+
+
+
 	printf("Hello! Third-party packages are needed to use Options 7 and 8. These packages are bc and lm-sensors.\n");
 	printf("To check if these are installed, please run Option 9. If they are not installed, this option will do so automatically.\n");
 	printf("Please ensure that you have at least 1GB of storage and an Internet connection. Thank you!\n\n\n");
