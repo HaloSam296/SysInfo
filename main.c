@@ -441,7 +441,7 @@ char* getSysInfo(int info) {
 
 			//ChatGPT helped with this copying bit
 
-			try{}
+			try{
 				while (fgets(command, sizeof(command), oGFile) != NULL) {
 					// Find the line containing "tail -n" and modify it
 					if (strstr(command, "tail -n") != NULL) {
