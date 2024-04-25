@@ -69,14 +69,15 @@ int main() {
 	bool loop = true;
 
 	printf("Hello! Third-party packages are needed to use Options 7 and 8. These packages are bc and lm-sensors.\n");
-	printf("If you do not have these installed, they will be installed upon running the options for the first time.\n");
-	printf("Please ensure that you have at least 1GB of storage and an Internet connection.\n\n\n");
+	printf("To check if these are installed, please run Option 9. If they are not installed, this option will do so automatically.\n");
+	printf("Please ensure that you have at least 1GB of storage and an Internet connection. Thank you!\n\n\n");
 
 	while (loop == true) {
 		//Menu printing time yay
 		printf("------------------------------------\n");
 		printf("System Information Options\n");
 
+		//Misc options
 		printf("\nMiscellaneous:\n");
 		printf("    1. Time and Date\n");
 		printf("    2. Hostname\n");
@@ -84,22 +85,23 @@ int main() {
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
 
+		//cpu options
 		printf("\nCPU Options:\n");
 		printf("    6. CPU Core Count\n");
-
-
-		//New CPU Functions:
 		printf("    7. Average CPU Temperature\n");
 		printf("    8. CPU Total Utilization\n");
 
 
-		printf("\n9. Exit\n");
+		//SysInfo Options
+		printf("\nSysInfo Options\n");
+		printf("	9. Check for Packages\n");
+		printf("	10. Exit\n");
 		printf("------------------------------------");
 		printf("\nEnter your choice: ");
 
 		//input validations
 		if (scanf("%d", &choice) != 1) {
-			printf("Pleae enter a number beetween 1 and 9\n");
+			printf("Pleae enter a number beetween 1 and 10\n");
 			clearBuffer();
 			continue;
 		}
@@ -148,7 +150,7 @@ int main() {
 				break;
 				
 			case 6:
-				//CPU Information
+				//CPU Core Count
 				char *CPUInfo = getSysInfo(6);
 				printf("CPU Core Count: %s", CPUInfo);
 				free(CPUInfo);
@@ -156,6 +158,7 @@ int main() {
 				break;
 
 			case 7:
+				//CPU Temp
 				char *CPUTemp = getSysInfo(7);
 				printf("CPU Average Temperature: %s", CPUTemp);
 				free(CPUTemp);
@@ -163,18 +166,25 @@ int main() {
 				break;
 
 			case 8:
+				//CPU Utilization
 				char *procUtil = getSysInfo(8);
 				free(procUtil);
 				printf("\n\n");
 				break;
 
 			case 9:
+				//Check for packages
+				getSysInfo(9);
+				break;
+
+
+			case 10:
 				//Exit case
 				printf("Exiting, goodbye!\n");
 				exit(0);
 
 			default:
-				printf("Invalid value. Please choose a number between 1 and 9.\n");
+				printf("Invalid value. Please choose a number between 1 and 10.\n");
 				break;
 		}
 	} //while (choice != 10); //this can break by having non-numerical characters entered
@@ -374,6 +384,14 @@ char* getSysInfo(int info) {
 		    return procUtil;
 		}
 
+
+		case 9:
+			//Check for the packages lm-sensors and bc 
+			printf("The program will now check for lm-sensors and bc.\nIf it needs to install any packages, you will likely be prompted for your sudo password. Please enter it.\n");
+			printf("After entering your password, please wait until the program has finished running. Depending on your Internet connection, this could take a couple minutes, but it should only be several seconds.\n");
+			printf("Finally, please ensure that you do have a working Internet connection and at least 1GB of free space.");
+			//run the script
+			system("bash checkPackages.sh");
 
 
 		default:

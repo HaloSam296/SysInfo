@@ -8,6 +8,10 @@ To-Do:
 
  - Thoroughly test and refine current project to prepare for project 3
 
+ - Reorganize Bash scripts
+		Make a single script to check and install any needed packages
+		Then keep avgTemp in its own scripts, no package checks necessary
+
  - Modify an existing bash script or create a new one that can be edited
 	within the C program to output different results. 
 
