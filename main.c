@@ -1,5 +1,5 @@
 /*
-Version: 2.2
+Version: 2.3
 Author: Samuel Brucker
 
 Sources:
@@ -180,12 +180,11 @@ int main() {
 
 			case 9:
 				//CPU Utilization
-				printf("There is currently and error in this script that prevents getting the utilization. The fix is WIP.\n");
-				system("bash bash/procUtil.sh");
-				//char *procUtil = getSysInfo(8);
-				//free(procUtil);
-				//printf("\n\n");
+				char *procUtil = getSysInfo(8);
+				free(procUtil);
+				printf("\n\n");
 				break;
+
 
 			case 10:
 				//Check for packages
@@ -466,7 +465,7 @@ char* getSysInfo(int info) {
 			fclose(oGFile);
 			fclose(newFile);
 			
-			printf("New script successfully created! Running now...\n");
+			printf("New script successfully created! Running now...\n\n\n");
 
 			system("chmod +x bash/historyNEW.sh");
 			system("bash bash/historyNEW.sh");

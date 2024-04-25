@@ -4,67 +4,11 @@
 
 
 
-#From github
-#Source: https://github.com/pcolby/scripts/blob/master/cpu.sh
-#ChatGPT was used to help find a way to get the average
-getProcerUtil() {
-    # by Paul Colby (http://colby.id.au), no rights reserved ;)
-
-    PREV_TOTAL=0
-    PREV_IDLE=0
-    x=0
-    sum_usage=0 # Initialize sum of CPU usage percentages
-    iterations=5 # Number of iterations for the while loop
-
-    while [ "$x" -lt "$iterations" ]; do
-        # Get the total CPU statistics, discarding the 'cpu ' prefix.
-        CPU=($(sed -n 's/^cpu\s//p' /proc/stat))
-        IDLE=${CPU[4]} # Assuming idle CPU time is at index 4.
-
-        # Calculate the total CPU time.
-        TOTAL=0
-        for VALUE in "${CPU[@]:0:8}"; do
-            TOTAL=$((TOTAL+VALUE))
-        done
-
-        # Calculate the CPU usage since we last checked.
-        DIFF_IDLE=$((IDLE-PREV_IDLE))
-        DIFF_TOTAL=$((TOTAL-PREV_TOTAL))
-        DIFF_USAGE=$((1000*(DIFF_TOTAL-DIFF_IDLE)/DIFF_TOTAL+5)/10)
-        echo -en "CPU: $DIFF_USAGE% \n"
-
-        # Add the current CPU usage to the sum
-        sum_usage=$((sum_usage + DIFF_USAGE))
-
-        # Remember the total and idle CPU times for the next check.
-        PREV_TOTAL="$TOTAL"
-        PREV_IDLE="$IDLE"
-
-        # Wait before checking again.
-        sleep 1
-
-        ((x++))
-    done
-
-    # Calculate and echo the average CPU usage
-    average_usage=$((sum_usage / iterations))
-    echo -e "\nAverage CPU Usage: $average_usage%"
-}
-
-
 #This is a mix of my own work and ChatGPT's
-getProcerUtilOLD() {
+getProcerUtil() {
 	
-    #check if bc is installed
-    #it comes native on Ubuntu desktop, so there shouldn't be any issues
-    if ! command -v bc &>/dev/null; then
-        echo "bc not found, please run the installation option."
-        exit 1 #stop the script
-    fi
-
-
-	# Read total CPU usage from /proc/stat
-    cpu_stat=($(grep '^cpu ' /proc/stat))
+    # Read total CPU usage from /proc/stat
+    cpu_stat=(`grep '^cpu ' /proc/stat`)
 
     # Get total CPU time spent in user mode, system mode, and idle time
     user=${cpu_stat[1]}
@@ -90,11 +34,13 @@ getProcerUtilOLD() {
     # Calculate total CPU utilization percentage
     total_utilization=$(echo "scale=2; ($non_idle_cpu_time / $total_cpu_time) * 100" | bc -l)
     
+    sleep .5
+    
     echo $total_utilization
 }
 
 
 #run the function
-procUtil=$(getProcerUtil)
+getProcerUtil
 
-echo $procUtil
+

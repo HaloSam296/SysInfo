@@ -7,5 +7,18 @@
 
 #Here's the super complicated and heavy bit of bash code:
 
-tail -n 5 ~/.bash_history
+tail -n 20 ~/.bash_history
 
+
+
+
+#Trying out different methods:
+
+
+#grep -e "$pattern" /home/*/.bash_history
+
+
+#HISTFILE=$HOME/.bash_history
+#history -r
+#unset HISTFILE
+#history
