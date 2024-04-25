@@ -441,7 +441,7 @@ char* getSysInfo(int info) {
 
 			//ChatGPT helped with this copying bit
 
-			try{
+			try {
 				while (fgets(command, sizeof(command), oGFile) != NULL) {
 					// Find the line containing "tail -n" and modify it
 					if (strstr(command, "tail -n") != NULL) {
@@ -451,6 +451,7 @@ char* getSysInfo(int info) {
 					// Write the modified or unchanged line to the new script
 					fprintf(newFile, "%s", command);
 				}
+				
 			} catch() {
 				printf("An error occured while modifying the script. Please run this C program as sudo.")
 				fclose(oGFile);
