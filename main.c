@@ -181,9 +181,10 @@ int main() {
 			case 9:
 				//CPU Utilization
 				printf("There is currently and error in this script that prevents getting the utilization. The fix is WIP.\n");
-				char *procUtil = getSysInfo(8);
-				free(procUtil);
-				printf("\n\n");
+				system("bash bash/procUtil.sh");
+				//char *procUtil = getSysInfo(8);
+				//free(procUtil);
+				//printf("\n\n");
 				break;
 
 			case 10:
