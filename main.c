@@ -436,27 +436,35 @@ char* getSysInfo(int info) {
 			FILE *newFile = fopen(newScript, "w");
 			//error handling if this somehow fails
 			if (newFile == NULL) {
-				perror("ERROR: Could not create new script. Pray.");
+				perror("ERROR: Could not create new script.");
 			}
 
 			//ChatGPT helped with this copying bit
-			while (fgets(command, sizeof(command), oGFile) != NULL) {
-				// Find the line containing "tail -n" and modify it
-				if (strstr(command, "tail -n") != NULL) {
-					// Replace the number in the command with user's input
-					snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
+
+			try{}
+				while (fgets(command, sizeof(command), oGFile) != NULL) {
+					// Find the line containing "tail -n" and modify it
+					if (strstr(command, "tail -n") != NULL) {
+						// Replace the number in the command with user's input
+						snprintf(command, sizeof(command), "history | tail -n %d\n", lineNum);
+					}
+					// Write the modified or unchanged line to the new script
+					fprintf(newFile, "%s", command);
 				}
-				// Write the modified or unchanged line to the new script
-				fprintf(newFile, "%s", command);
+			} catch() {
+				printf("An error occured while modifying the script. Please run this C program as sudo.")
+				fclose(oGFile);
+				close(newFile);
+				break;
 			}
 
 			//now to clean up after ourselves
 			fclose(oGFile);
 			fclose(newFile);
 			
-			printf("New script successfully created! Running now...");
+			printf("New script successfully created! Running now...\n");
 
-			system("bash bash/historyNEW.sh");
+			system("./bash/historyNEW.sh");
 
 
 
