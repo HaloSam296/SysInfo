@@ -7,7 +7,7 @@
 
 #Here's the super complicated and heavy bit of bash code:
 
-tail -n 20 ~/.bash_history
+tail -n LINENUMHERE ~/.bash_history
 
 
 

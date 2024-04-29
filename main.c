@@ -1,5 +1,5 @@
 /*
-Version: 2.3
+Version: 2.4
 Author: Samuel Brucker
 
 Sources:
@@ -90,25 +90,26 @@ int main() {
 		printf("    3. System Release Information\n");
 		printf("    4. Kernel Version\n");
 		printf("    5. Total System Memory\n");
-		printf("    6. Show Terminal History\n");
+		printf("    6. Show Terminal History (modifies a script)\n");
+		printf("    7. Confirm Script Modification\n");
 
 		//cpu options
 		printf("\nCPU Options:\n");
-		printf("    7. CPU Core Count\n");
-		printf("    8. Average CPU Temperature (Not for VMs)\n");
-		printf("    9. CPU Utilization\n");
+		printf("    8. CPU Core Count\n");
+		printf("    9. Average CPU Temperature (Incompatible with VMs)\n");
+		printf("    10. CPU Utilization\n");
 
 
 		//SysInfo Options
 		printf("\nSysInfo Options:\n");
-		printf("    10. Check for Packages\n");
-		printf("    11. Exit\n");
+		printf("    11. Check for Packages\n");
+		printf("    12. Exit\n");
 		printf("------------------------------------");
 		printf("\nEnter your choice: ");
 
 		//input validations
 		if (scanf("%d", &choice) != 1) {
-			printf("Please enter a number between 1 and 11\n");
+			printf("Please enter a number between 1 and 12\n");
 			clearBuffer();
 			continue;
 		}
@@ -161,8 +162,24 @@ int main() {
 				getSysInfo(10);
 				break;
 				
-				
+
+
 			case 7:
+				//WIP
+				int fileDifCheck = getSysInfo(11);
+
+				if (fileDifCheck == 0) {
+					printf("There have been no modifications.");
+				} else if (fileDifCheck == 1) {
+					printf("The History script was successfully modified.");
+				} else {
+					printf("There was an error while checking for modifications. Have you ran Option 6 (Show Terminal History)?");
+				}
+				break;
+
+
+				
+			case 8:
 				//CPU Core Count
 				char *CPUInfo = getSysInfo(6);
 				printf("CPU Core Count: %s", CPUInfo);
@@ -170,7 +187,7 @@ int main() {
 				printf("\n\n");
 				break;
 
-			case 8:
+			case 9:
 				//CPU Temp
 				char *CPUTemp = getSysInfo(7);
 				printf("CPU Average Temperature: %s", CPUTemp);
@@ -178,7 +195,7 @@ int main() {
 				printf("\n\n");
 				break;
 
-			case 9:
+			case 10:
 				//CPU Utilization
 				char *procUtil = getSysInfo(8);
 				free(procUtil);
@@ -186,19 +203,19 @@ int main() {
 				break;
 
 
-			case 10:
+			case 11:
 				//Check for packages
 				getSysInfo(9);
 				break;
 
 
-			case 11:
+			case 12:
 				//Exit case
 				printf("Exiting, goodbye!\n");
 				exit(0);
 
 			default:
-				printf("Invalid value. Please choose a number between 1 and 11.\n");
+				printf("Invalid value. Please choose a number between 1 and 12.\n");
 				break;
 		}
 	} 
@@ -470,6 +487,44 @@ char* getSysInfo(int info) {
 			system("chmod +x bash/historyNEW.sh");
 			system("bash bash/historyNEW.sh");
 			break;
+
+
+
+		case 11:
+			//Verify that the original bash script (historyOG) has been copied and modified 
+
+			//ChatGPT was here first
+			//I (Sam) was here second
+			FILE *OGfile = fopen("bash/historyOG.sh", "r");
+			FILE *NEWfile = fopen("bash/historyNEW.sh", "r");
+
+			if (OGfile == NULL || newFile == NULL) {
+				perror("Error opening file");
+				if (OGfile) fclose(OGfile);
+				if (newFile) fclose(newFile);
+				return -1; // Error opening file
+			}
+
+			char line1[1000];
+			char line2[1000];
+
+			while (fgets(line1, sizeof(line1), OGfile) && fgets(line2, sizeof(line2), newFile)) {
+				if (strcmp(line1, line2) != 0) {
+					fclose(OGfile);
+					fclose(newFile);
+					return 1; // Files are different
+				}
+			}
+
+			if (feof(OGfile) != feof(newFile)) {
+				fclose(OGfile);
+				fclose(newFile);
+				return 1; // Files have different lengths
+			}
+
+			fclose(OGfile);
+			fclose(newFile);
+			return 0; // Files are the same
 
 
 		default:

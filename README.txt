@@ -1,7 +1,7 @@
 Name: SysInfo
 Author: Samuel Brucker
-Version: 2.3
-Date: 4/25/24 
+Version: 2.4
+Date: 4/29/24 
 
 GitHub: https://github.com/HaloSam296/SysInfo
 
@@ -14,7 +14,7 @@ SysInfo is a small command line C utility to retrieve system information. Curren
 	-Kernel Version
 	-Ram Information
 	-CPU Core Count
-	-CPU Temperature
+	-CPU Temperature (Not compatible with VMs)
 	-CPU Utilization
 These options are chosen through a menu.
 
