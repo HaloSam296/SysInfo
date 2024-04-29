@@ -494,21 +494,35 @@ char* getSysInfo(int info) {
 			//Verify that the original bash script (historyOG) has been copied and modified 
 
 			//ChatGPT was here first
-			//I (Sam) was here second
+			//I (Sam) was here second with improvements and modifications
 			FILE *OGfile = fopen("bash/historyOG.sh", "r");
 			FILE *NEWfile = fopen("bash/historyNEW.sh", "r");
 
-			if (OGfile == NULL || newFile == NULL) {
-				perror("Error opening file");
+			//Error handling for if either of the files does not exist:
+			if (OGfile == NULL) {
+				perror("An error occured while opening the original script. Does `historyOG.sh` exist in the SysInfo-main/bash/ directory?");
 				if (OGfile) fclose(OGfile);
-				if (newFile) fclose(newFile);
+				if (NEWfile) fclose(NEWfile);
+				return "-1"; // Error opening file
+			} 
+			if (NEWfile == NULL) {
+				perror("An error occured while opening the modified script. Have you ran Option 6 (Show Terminal History) before?");
+				if (OGfile) fclose(OGfile);
+				if (NEWfile) fclose(NEWfile);
 				return "-1"; // Error opening file
 			}
+
 
 			char line1[1000];
 			char line2[1000];
 
 			while (fgets(line1, sizeof(line1), OGfile) && fgets(line2, sizeof(line2), newFile)) {
+				//Error handling:
+				if (ferror(OGfile) || ferror(newFile)) {
+					perror("Error reading file");
+					break;
+    			}
+
 				if (strcmp(line1, line2) != 0) {
 					fclose(OGfile);
 					fclose(newFile);
