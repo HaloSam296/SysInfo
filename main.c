@@ -516,28 +516,28 @@ char* getSysInfo(int info) {
 			char line1[1000];
 			char line2[1000];
 
-			while (fgets(line1, sizeof(line1), OGfile) && fgets(line2, sizeof(line2), newFile)) {
+			while (fgets(line1, sizeof(line1), OGfile) && fgets(line2, sizeof(line2), NEWfile)) {
 				//Error handling:
-				if (ferror(OGfile) || ferror(newFile)) {
+				if (ferror(OGfile) || ferror(NEWfile)) {
 					perror("Error reading file");
 					break;
     			}
 
 				if (strcmp(line1, line2) != 0) {
 					fclose(OGfile);
-					fclose(newFile);
+					fclose(NEWfile);
 					return "1"; // Files are different
 				}
 			}
 
-			if (feof(OGfile) != feof(newFile)) {
+			if (feof(OGfile) != feof(NEWfile)) {
 				fclose(OGfile);
-				fclose(newFile);
+				fclose(NEWfile);
 				return "1"; // Files have different lengths
 			}
 
 			fclose(OGfile);
-			fclose(newFile);
+			fclose(NEWfile);
 			return "0"; // Files are the same
 
 
