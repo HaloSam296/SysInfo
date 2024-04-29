@@ -161,23 +161,19 @@ int main() {
 				//Show terminal history based on user input
 				getSysInfo(10);
 				break;
-				
-
 
 			case 7:
-				//WIP
+				//confirm modification of history script
 				char *fileDifCheck = getSysInfo(11);
 
 				if (fileDifCheck == "0") {
 					printf("There have been no modifications.");
 				} else if (fileDifCheck == "1") {
 					printf("The history script was successfully modified.");
-				} else {
-					printf("There was an error while checking for modifications. Have you ran Option 6 (Show Terminal History)?");
 				}
+
+				printf("\n\n");
 				break;
-
-
 				
 			case 8:
 				//CPU Core Count
@@ -206,6 +202,7 @@ int main() {
 			case 11:
 				//Check for packages
 				getSysInfo(9);
+				printf("\n\n");
 				break;
 
 
@@ -262,9 +259,8 @@ char* getCurrentTime() {
 }
 
 
-//Straight from geekforgeeks woo!
-//Update: This is no longer straight from geekforgeeks. It's heavily edited
-//Worth mentioning is that I added the switch statement and edited this quite a bit
+//The main functionality of the program. This is where most of the data retrieval and processes take place
+//Note that every case must return a char, if anything.
 char* getSysInfo(int info) {
 	struct utsname sysInfo;
 
