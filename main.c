@@ -166,12 +166,11 @@ int main() {
 
 			case 7:
 				//WIP
-				char fileDifCheckSTRING = getSysInfo(11);
-				int fileDifCheck = (int)(fileDifCheckSTRING);
+				char *fileDifCheckSTRING = getSysInfo(11);
 
-				if (fileDifCheck == 0) {
+				if (fileDifCheck == "0") {
 					printf("There have been no modifications.");
-				} else if (fileDifCheck == 1) {
+				} else if (fileDifCheck == "1") {
 					printf("The History script was successfully modified.");
 				} else {
 					printf("There was an error while checking for modifications. Have you ran Option 6 (Show Terminal History)?");
@@ -503,7 +502,7 @@ char* getSysInfo(int info) {
 				perror("Error opening file");
 				if (OGfile) fclose(OGfile);
 				if (newFile) fclose(newFile);
-				return -1; // Error opening file
+				return "-1"; // Error opening file
 			}
 
 			char line1[1000];
@@ -513,19 +512,19 @@ char* getSysInfo(int info) {
 				if (strcmp(line1, line2) != 0) {
 					fclose(OGfile);
 					fclose(newFile);
-					return 1; // Files are different
+					return "1"; // Files are different
 				}
 			}
 
 			if (feof(OGfile) != feof(newFile)) {
 				fclose(OGfile);
 				fclose(newFile);
-				return 1; // Files have different lengths
+				return "1"; // Files have different lengths
 			}
 
 			fclose(OGfile);
 			fclose(newFile);
-			return 0; // Files are the same
+			return "0"; // Files are the same
 
 
 		default:
