@@ -166,7 +166,8 @@ int main() {
 
 			case 7:
 				//WIP
-				int fileDifCheck = getSysInfo(11);
+				char *fileDifCheckSTRING = getSysInfo(11);
+				int fileDifCheck = (int)(fileDifCheckSTRING);
 
 				if (fileDifCheck == 0) {
 					printf("There have been no modifications.");
