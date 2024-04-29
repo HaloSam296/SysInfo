@@ -171,7 +171,7 @@ int main() {
 				if (fileDifCheck == "0") {
 					printf("There have been no modifications.");
 				} else if (fileDifCheck == "1") {
-					printf("The History script was successfully modified.");
+					printf("The history script was successfully modified.");
 				} else {
 					printf("There was an error while checking for modifications. Have you ran Option 6 (Show Terminal History)?");
 				}
