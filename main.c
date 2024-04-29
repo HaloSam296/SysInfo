@@ -166,7 +166,7 @@ int main() {
 
 			case 7:
 				//WIP
-				char *fileDifCheckSTRING = getSysInfo(11);
+				char fileDifCheckSTRING = getSysInfo(11);
 				int fileDifCheck = (int)(fileDifCheckSTRING);
 
 				if (fileDifCheck == 0) {
