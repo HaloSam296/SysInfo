@@ -1,24 +1,35 @@
 To-Do:
 
-DONE - Learn git and create GitHub repo 
+ DONE - Learn git and create GitHub repo 
 
-DONE - Change avgTemp to use lm-sensors 
+ DONE - Change avgTemp to use lm-sensors 
+
+ DONE - Update README
 
  - Finish How-To
+		WIP - Redo images 
+		WIP - Provide brief explanations and images of the code 
 
  - Thoroughly test and refine current project to prepare for project 3
+	Review error handling
 
  DONE - Reorganize Bash scripts	
 		Make a single script to check and install any needed packages
 		Then keep avgTemp in its own scripts, no package checks necessary
 
- - Modify an existing bash script or create a new one that can be edited - DONE
+ Done - Modify an existing bash script or create a new one that can be edited - DONE
 	within the C program to output different results. 
 
 	- This modification must be able to be specifically set by the user - DONE
 
-	- The users must be able to verify within the C program that - WIP
+	- The users must be able to verify within the C program that - Done
 		the changes have successfully been made
+
+ - Improve error handling for terminal history option
+		Provide an error message if the user has asked for more lines of history than they have.
+
+ WIP - Debug the CPU Usage script on VMs
+
 
 For the Bash Script modification:
 	Use two copies of the script. First is an original copy and the 

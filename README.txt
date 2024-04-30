@@ -1,7 +1,7 @@
 Name: SysInfo
 Author: Samuel Brucker
 Version: 2.4
-Date: 4/29/24 
+Date: 4/30/24 
 
 GitHub: https://github.com/HaloSam296/SysInfo
 
@@ -13,6 +13,8 @@ SysInfo is a small command line C utility to retrieve system information. Curren
 	-Release Information
 	-Kernel Version
 	-Ram Information
+	-Show Terminal History (modifies a script)
+	-Confirm Script Modification
 	-CPU Core Count
 	-CPU Temperature (Not compatible with VMs)
 	-CPU Utilization
@@ -30,11 +32,6 @@ Requirements:
 Usage:
 1. Using the command line, go to the directory (folder) where the program is stored.
 	1a. You can do this using the `cd` command and pressing ENTER: `cd [path to the program]`
-
-3. Make the Bash files executable
-	3a. Run "sudo chmod +x [Bash File Name]" for each of the three Bash files
-	4a. You will to type in your sudo password initially. The characters are hidden from you,
-	    but they will still be inputted.
 
 2. Compile the C program
 	2a. If you are using GCC, this is done by: `gcc main.c -o run`
