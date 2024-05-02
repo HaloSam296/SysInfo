@@ -1,5 +1,6 @@
 /*
-Version: 2.4
+Version: 3
+GitHub: GitHub: https://github.com/HaloSam296/SysInfo
 Author: Samuel Brucker
 
 Sources:
@@ -414,12 +415,6 @@ char* getSysInfo(int info) {
 			printf("The program will now check for lm-sensors and bc.\nIf it needs to install any packages, you will likely be prompted for your sudo password. Please enter it.\n");
 			printf("After entering your password, please wait until the program has finished running. Depending on your Internet connection, this could take a couple minutes, but it should only be several seconds.\n");
 			printf("Finally, please ensure that you do have a working Internet connection and at least 1GB of free space.");
-
-			//pause so the user can read the words, if they wish
-			char useless;
-		
-			printf("\n\nPlease hit Enter to continue:\n");
-			scanf("%c", &useless);
 
 			//run the script
 			system("bash bash/checkPackages.sh");

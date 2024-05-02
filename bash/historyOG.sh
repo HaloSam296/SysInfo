@@ -10,15 +10,3 @@
 tail -n LINENUMHERE ~/.bash_history
 
 
-
-
-#Trying out different methods:
-
-
-#grep -e "$pattern" /home/*/.bash_history
-
-
-#HISTFILE=$HOME/.bash_history
-#history -r
-#unset HISTFILE
-#history

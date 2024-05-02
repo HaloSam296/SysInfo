@@ -1,7 +1,7 @@
 Name: SysInfo
 Author: Samuel Brucker
-Version: 2.4
-Date: 4/30/24 
+Version: 3
+Date: 5/1/24
 
 GitHub: https://github.com/HaloSam296/SysInfo
 
