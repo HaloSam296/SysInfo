@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 checkStorageSpace() {
     FREE_SPACE=$(df -k . | awk 'NR==2{print $4}')
 
@@ -30,9 +28,6 @@ checkConnection() {
     
     return $pingResponse
 }
-
-
-
 
 #The main function
 getPackages() {
@@ -81,3 +76,7 @@ getPackages() {
 
 #Run the function
 getPackages
+
+
+
+

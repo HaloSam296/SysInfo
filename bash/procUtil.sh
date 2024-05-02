@@ -1,9 +1,6 @@
 #!/bin/bash
 
 
-
-
-
 #This is a mix of my own work and ChatGPT's
 getProcerUtil() {
 	
@@ -39,8 +36,8 @@ getProcerUtil() {
     echo $total_utilization
 }
 
-
 #run the function
 getProcerUtil
+
 
 

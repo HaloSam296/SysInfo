@@ -10,7 +10,7 @@ To-Do:
 		WIP - Redo images 
 		WIP - Provide brief explanations and images of the code 
 
- - Thoroughly test and refine current project to prepare for project 3
+ DONE - Thoroughly test and refine current project to prepare for project 3
 	Review error handling
 
  DONE - Reorganize Bash scripts	
@@ -25,14 +25,3 @@ To-Do:
 	- The users must be able to verify within the C program that - Done
 		the changes have successfully been made
 
- - Improve error handling for terminal history option
-		Provide an error message if the user has asked for more lines of history than they have.
-
- WIP - Debug the CPU Usage script on VMs
-
-
-For the Bash Script modification:
-	Use two copies of the script. First is an original copy and the 
-	second is the modified copy. This lets the original be the base
-	that can be compared against by any subsequent copies, to test for
-	modifications. 

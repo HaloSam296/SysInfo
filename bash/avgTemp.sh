@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-#I got a weird error I haven't encountered before. STackOverflow and research helped
+#I got a weird error I haven't encountered before. StackOverflow and research helped
 #me understand the error a little, but not enough to fix it.
 #Thus, ChatGPT:
 
